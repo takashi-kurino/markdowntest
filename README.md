@@ -19,8 +19,8 @@
     - Dcokerは環境が異なってもすぐに実行できることと、
 
 - deploy : さくらVPS
-    - awsやGCP,azuruも考えたが、まずは歴史をおさえて、自分の思想での設計を重視したかったため。nextはvercelを,djangoはrenderを使えば楽だが、認証につき、無料枠でsmtpメール設定ができなかったため、総合で安く済む日本サーバーでの運用を考えた。
+    - awsやGCP,azuruも考えたが、まずは歴史をおさえて、自分の思想での設計を重視したかったため。nextはvercelを,djangoはrenderを使えば楽だが、認証の際に無料枠でsmtpメール設定ができなかったため、総合で安く済む日本サーバーでの運用を考えた。
 ## 機能一覧
 
-[機能全般](https://docs.google.com/spreadsheets/d/1EidbhsEDfPob-SpcRWWKjWHrd_fIpGc0WlMhUA_Qgu4/edit?usp=sharing)
+機能全般；[スプレットシート](https://docs.google.com/spreadsheets/d/1EidbhsEDfPob-SpcRWWKjWHrd_fIpGc0WlMhUA_Qgu4/edit?usp=sharing)
 - ユーザー認証(ログイン/ログアウト,アカウント作成,アカウント削除,pass再設定/更新,メール認証/)
