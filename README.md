@@ -2,6 +2,7 @@
 
 ## なんのアプリか
 - ステートフル認証付きtodoアプリ
+    -[サイト](http://apple.com)
     
 ## 技術スタック　選定理由
 - Frontend:React/Next.js/Tailwind
@@ -32,4 +33,4 @@
     - 登録/ログイン/ログアウト,アカウント削除,パスワード再設定/更新,メール認証
 - Todo管理
     - 作成・更新・削除・完了切り替え
-- [スプレットシート](https://docs.google.com/spreadsheets/d/1EidbhsEDfPob-SpcRWWKjWHrd_fIpGc0WlMhUA_Qgu4/edit?usp=sharing)
+- [url設計](https://docs.google.com/spreadsheets/d/1EidbhsEDfPob-SpcRWWKjWHrd_fIpGc0WlMhUA_Qgu4/edit?usp=sharing)
