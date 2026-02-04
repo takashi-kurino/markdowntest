@@ -15,14 +15,21 @@
     - 認証・管理画面やORMが揃っており、webアプリの基礎構造を学ぶのに適している。
     将来的な拡張（非同期通信、API分離）も想定。
 - Auth: dj_rest_auth + HttpOnly Cookie
-    - 認証に関しての歴史と実装を兼ねた
-
+    - JWTを含めた認証の仕組みを歴史的背景（セッション / トークン）から理解したかった
+    - フロントにトークンを持たせない設計を採用し、セキュリティ面も考慮
 - Infra : Docker / Nginx
-    - Dcokerは環境が異なってもすぐに実行できることと、
+    - 環境差異をなくし、ローカル〜本番で同一構成を保つため
+    - リバースプロキシの役割を理解する目的も含む
 
 - deploy : さくらVPS
-    - awsやGCP,azuruも考えたが、まずは歴史をおさえて、自分の思想での設計を重視したかったため。nextはvercelを,djangoはrenderを使えば楽だが、認証の際に無料枠でsmtpメール設定ができなかったため、総合で安く済む日本サーバーでの運用を考えた。
-## 機能一覧　[スプレットシート](https://docs.google.com/spreadsheets/d/1EidbhsEDfPob-SpcRWWKjWHrd_fIpGc0WlMhUA_Qgu4/edit?usp=sharing)
+    - マネージドサービスではなく自分で構成・運用する経験を重視
+    - 認証メール（SMTP）や費用面を考慮し日本のVPSを選択
+
+## 機能一覧　
 
 機能全般；
-- ユーザー認証(ログイン/ログアウト,アカウント作成,アカウント削除,パスワード再設定/更新,メール認証/)
+- ユーザー認証
+    - 登録/ログイン/ログアウト,アカウント削除,パスワード再設定/更新,メール認証
+- Todo管理
+    - 作成・更新・削除・完了切り替え
+- [スプレットシート](https://docs.google.com/spreadsheets/d/1EidbhsEDfPob-SpcRWWKjWHrd_fIpGc0WlMhUA_Qgu4/edit?usp=sharing)
