@@ -2,7 +2,7 @@
 
 ## なんのアプリか
 - ステートフル認証付きtodoアプリ
-    -[サイト](http://apple.com)
+    - [サイト](http://apple.com)
     
 ## 技術スタック　選定理由
 - Frontend:React/Next.js/Tailwind
@@ -15,7 +15,7 @@
 - Backed:Django 
     - 認証・管理画面やORMが揃っており、webアプリの基礎構造を学ぶのに適している。
     将来的な拡張（非同期通信、API分離）も想定。
-- Auth: dj_rest_auth + HttpOnly Cookie
+- Auth: dj_rest_auth + JWT + HttpOnly Cookie
     - JWTを含めた認証の仕組みを歴史的背景（セッション / トークン）から理解したかった
     - フロントにトークンを持たせない設計を採用し、セキュリティ面も考慮
 - Infra : Docker / Nginx
@@ -30,8 +30,8 @@
 
 機能全般；
 - ユーザー認証
-    - 登録/ログイン/ログアウト,アカウント削除,パスワード再設定/更新,メール認証
+    - 登録/ログイン/ログアウト・アカウント削除・パスワード再設定/更新・メール認証
 - Todo管理
-    - 作成・更新・削除・完了切り替え
+    - 作成/更新/削除/完了切り替え
 - url設計
     - [スプレットシートへ](https://docs.google.com/spreadsheets/d/1EidbhsEDfPob-SpcRWWKjWHrd_fIpGc0WlMhUA_Qgu4/edit?usp=sharing)
