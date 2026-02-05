@@ -49,7 +49,7 @@
 ## 4. 苦労した点
 ### dj_rest_authのパスワードリセットメールの解決。
 
-#### 以下の問題が上がっていた。
+以下の問題が上がっていた。
 
     [stack overflow](https://stackoverflow.com/questions/77077297/dj-rest-auth-password-reset-serializer-is-not-working)
     
