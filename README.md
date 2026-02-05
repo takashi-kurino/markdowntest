@@ -47,7 +47,6 @@
     [スプレットシートへ](https://docs.google.com/spreadsheets/d/1EidbhsEDfPob-SpcRWWKjWHrd_fIpGc0WlMhUA_Qgu4/edit?usp=sharing)
 
 ## 4. 苦労した点
-
 ### dj_rest_authのパスワードリセットメールの解決。
 
 - 以下の問題が上がっていた。<br>
@@ -114,7 +113,7 @@
     ```
     これをカスタムシリアライザーに反映する。
 
-### 解決策コード
+- 解決策コード
     ``` 
     import os
     from dj_rest_auth.serializers import PasswordResetSerializer
@@ -134,7 +133,7 @@
             }
     ```
 
-### 解説
+- 解説
     uidを作成している生のコードをインポート
     ``` 
     from dj_rest_auth.forms import user_pk_to_url_str
@@ -161,7 +160,7 @@
     AIに聞いても解決できなかったことが、生のコードを見ることで解決した。<br>
     かなり苦労したが、自力で解決できたことが嬉しかった。
 
-- リフレッシュトークンの扱い。無限ループ
+### リフレッシュトークンの扱い。無限ループ
 
 
 ## 次回
