@@ -50,7 +50,51 @@
 - 
 
 ## 4. 苦労した点
+- dj_rest_authのパスワードリセットメールの解決。以下の問題が上がっていた。
+    [stack overflow](https://stackoverflow.com/questions/77077297/dj-rest-auth-password-reset-serializer-is-not-working)
+    
+    フロントへのURLへ飛ばしたかったため、カスタムserializerを作成したが、urlのみカスタムしたところ、uidの部分が文字化けを起こす。
+    
+    理想url：http://takashikurino/password-reset/confirm?uid=1&token={...}
+    結果url：http://takashikurino/password-reset/confirm?uid=A&token={...} 
+    
+    '''解決策
+    import os
+    from dj_rest_auth.serializers import PasswordResetSerializer
+    from dj_rest_auth.forms import user_pk_to_url_str
+
+    NEXT_PUBLIC_URL = os.getenv("NEXT_PUBLIC_URL")
+
+    def custom_url_generator(request, user, temp_key):
+        id = user_pk_to_url_str(user)
+        return f'{NEXT_PUBLIC_URL}/password-reset/confirm?uid={id}&token={temp_key}'
+
+    class CustomPasswordResetSerializer(PasswordResetSerializer):
+
+        def get_email_options(self, **kwargs):
+            return {
+                'url_generator': custom_url_generator,
+            }
+    '''
+    
+    uidを作成している生のコードをインポート
+    '''
+    from dj_rest_auth.forms import user_pk_to_url_str
+    '''
+
+    カスタムのurlに反映
+    '''
+    def custom_url_generator(request, user, temp_key):
+        id = user_pk_to_url_str(user)
+        return f'{NEXT_PUBLIC_URL}/password-reset/confirm?uid={id}&token={temp_key}'
+    '''
+
+    
+
+
+
 - リフレッシュトークンの扱い。無限ループ
+
 
 ## 次回
 Nextのfetchを中心としたauth0の利用。
