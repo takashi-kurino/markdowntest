@@ -36,7 +36,7 @@
 ## 3. 設計・構成の考え方
 
 - フロント/バックを分けた理由 
-    - webだけでなく、ネイティブへ対応を考慮<
+    - webだけでなく、ネイティブへ対応を考慮
     - 責務の明確化。フロントは表示のみ、バックでコアプログラムの管理。
     - 他言語やフレームワークへの移行の簡略化。
 
@@ -158,11 +158,83 @@
             }
     ```
 
-    結果url：http://localhost/password-reset/confirm?uid=1&token={...} 
-    AIに聞いても解決できなかったことが、生のコードを見ることで解決した。 
-    かなり苦労したが、自力で解決できたことが嬉しかった。
+    - 結果url：http://localhost/password-reset/confirm?uid=1&token={...} 
+    - AIに聞いても解決できなかったことが、生のコードを見ることで解決した。 
 
-### リフレッシュトークンの扱い。無限ループ
+### リフレッシュトークンの扱い。
+
+- リフレッシュ処理時、リフレッシュトークンがない場合にホーム画面とログイン画面で無限ループに陥った。（ログイン状態がヘッダーにあるため）
+
+    コード全体。今回の通信はaxiosを利用したためインターセプターで処理を分岐。
+    ``` axiosapi.ts
+
+    import axios from "axios";
+    import endpoints from "./apiEndpoints";
+
+    const getBaseURL = () => {
+    if (typeof window !== "undefined") {
+        return `${window.location.protocol}//${window.location.host}/api/`;
+    }
+    return process.env.NEXT_PUBLIC_API_URL || "http://localhost/api/";
+    };
+
+    // Axiosインスタンス作成
+    const api = axios.create({
+    baseURL: getBaseURL(),
+    withCredentials: true,
+    });
+
+    export const refreshApi = axios.create({
+    baseURL: getBaseURL(),
+    withCredentials: true,
+    });
+
+    api.interceptors.response.use(
+    res => res,
+    async error => {
+
+        // ログインページ,homeではリフレッシュ処理を行わない
+        if (window.location.pathname === "/login" || window.location.pathname === "/") {
+            return Promise.reject(error);
+        }
+
+        const original = error.config;
+
+        // refresh API 自身は無視
+        if (original.url?.includes(endpoints.auth.refresh())) {
+            return Promise.reject(error);
+        }
+
+        if (
+            error.response?.status === 401 &&
+            !original._retry
+        ) {
+            original._retry = true;
+        
+
+            try {
+                await refreshApi.post(endpoints.auth.refresh());
+                return api(original);
+            } catch {
+                // refresh token 無い or 期限切れ
+                window.location.href = "/login";
+                return Promise.reject(error);
+            }
+        }
+
+        return Promise.reject(error);
+    }
+    );
+    export default api;
+    ```
+    下記コードを追加して無限ループを止めるようにした。
+
+    ```
+     // ログインページ,homeではリフレッシュ処理を行わない
+        if (window.location.pathname === "/login" || window.location.pathname === "/") {
+        return Promise.reject(error);
+        }
+    ```
 
 
 ## 次回
