@@ -49,7 +49,7 @@
 ## 4. 苦労した点
 ### dj_rest_authのパスワードリセットメールの解決。
 
-- 以下の問題が上がっていた。<br>
+#### 以下の問題が上がっていた。<br>
     [stack overflow](https://stackoverflow.com/questions/77077297/dj-rest-auth-password-reset-serializer-is-not-working)
     
     フロントのURLへ飛ばしたかったため、カスタムserializerを作成したが、uidが文字化けを起こす。<br>
@@ -113,7 +113,7 @@
     ```
     これをカスタムシリアライザーに反映する。
 
-- 解決策コード
+#### 解決策コード
     ``` 
     import os
     from dj_rest_auth.serializers import PasswordResetSerializer
@@ -133,7 +133,7 @@
             }
     ```
 
-- 解説
+#### 解説
     uidを作成している生のコードをインポート
     ``` 
     from dj_rest_auth.forms import user_pk_to_url_str
