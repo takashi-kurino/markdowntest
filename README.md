@@ -49,7 +49,8 @@
 ## 4. 苦労した点
 ### dj_rest_authのパスワードリセットメールの解決。
 
-#### 以下の問題が上がっていた。<br>
+#### 以下の問題が上がっていた。
+
     [stack overflow](https://stackoverflow.com/questions/77077297/dj-rest-auth-password-reset-serializer-is-not-working)
     
     フロントのURLへ飛ばしたかったため、カスタムserializerを作成したが、uidが文字化けを起こす。<br>
@@ -58,6 +59,7 @@
     結果url：http://localhost/password-reset/confirm?uid=A&token={...}<br>
 
     chatgptへ聞いたが解決せず、デフォルトコードを自分で見てみる
+
     ```
     class AllAuthPasswordResetForm(DefaultPasswordResetForm):
         def clean_email(self):
@@ -104,7 +106,6 @@
                     'account/email/password_reset_key', email, context
                 )
             return self.cleaned_data['email']
-
     ```
 
     uidを制御しているコードを発見。受け取ったユーザーをuser_pk_to_url_strで変換していることがわかった。
