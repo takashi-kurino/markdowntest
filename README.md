@@ -59,7 +59,7 @@
     結果url：http://takashikurino/password-reset/confirm?uid=A&token={...}<br>
     
     解決策
-    '''
+    ```
     import os
     from dj_rest_auth.serializers import PasswordResetSerializer
     from dj_rest_auth.forms import user_pk_to_url_str
@@ -76,19 +76,19 @@
             return {
                 'url_generator': custom_url_generator,
             }
-    '''
+    ```
     
     uidを作成している生のコードをインポート
-    '''
+    ```
     from dj_rest_auth.forms import user_pk_to_url_str
-    '''
+    ```
 
     カスタムのurlに反映
-    '''
+    ```
     def custom_url_generator(request, user, temp_key):
         id = user_pk_to_url_str(user)
         return f'{NEXT_PUBLIC_URL}/password-reset/confirm?uid={id}&token={temp_key}'
-    '''
+    ```
 
     
 
