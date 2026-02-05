@@ -58,7 +58,8 @@
     理想url：http://takashikurino/password-reset/confirm?uid=1&token={...}<br>
     結果url：http://takashikurino/password-reset/confirm?uid=A&token={...}<br>
     
-    '''解決策
+    解決策
+    '''
     import os
     from dj_rest_auth.serializers import PasswordResetSerializer
     from dj_rest_auth.forms import user_pk_to_url_str
