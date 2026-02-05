@@ -1,7 +1,6 @@
 # 認証付きTodoApp
 
-## なんのアプリか
-- ステートフル認証付きtodoアプリ
+ステートフル認証付きtodoアプリ
     [サイト](http://apple.com)
     
 ## 1. 技術スタック　選定理由
@@ -89,7 +88,7 @@
         id = user_pk_to_url_str(user)
         return f'{NEXT_PUBLIC_URL}/password-reset/confirm?uid={id}&token={temp_key}'
     ```
-    
+
     メールオプションに反映
     ``` 
     class CustomPasswordResetSerializer(PasswordResetSerializer):
