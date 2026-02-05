@@ -53,10 +53,10 @@
 - dj_rest_authのパスワードリセットメールの解決。以下の問題が上がっていた。
     [stack overflow](https://stackoverflow.com/questions/77077297/dj-rest-auth-password-reset-serializer-is-not-working)
     
-    フロントへのURLへ飛ばしたかったため、カスタムserializerを作成したが、urlのみカスタムしたところ、uidの部分が文字化けを起こす。
+    フロントへのURLへ飛ばしたかったため、カスタムserializerを作成したが、urlのみカスタムしたところ、uidの部分が文字化けを起こす。<br>
     
-    理想url：http://takashikurino/password-reset/confirm?uid=1&token={...}
-    結果url：http://takashikurino/password-reset/confirm?uid=A&token={...} 
+    理想url：http://takashikurino/password-reset/confirm?uid=1&token={...}<br>
+    結果url：http://takashikurino/password-reset/confirm?uid=A&token={...}<br>
     
     '''解決策
     import os
