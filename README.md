@@ -56,8 +56,9 @@
     
     理想url：http://localhost/password-reset/confirm?uid=1&token={...}<br>
     結果url：http://localhost/password-reset/confirm?uid=A&token={...}<br>
-   
-    ``` 解決策コード
+    
+    ### 解決策コード
+    ``` 
     import os
     from dj_rest_auth.serializers import PasswordResetSerializer
     from dj_rest_auth.forms import user_pk_to_url_str
@@ -76,18 +77,21 @@
             }
     ```
 
-    解説
-    ``` uidを作成している生のコードをインポート
+    ### 解説
+    uidを作成している生のコードをインポート
+    ``` 
     from dj_rest_auth.forms import user_pk_to_url_str
     ```
 
-    ``` カスタムのurlに反映
+    カスタムのurlに反映
+    ``` 
     def custom_url_generator(request, user, temp_key):
         id = user_pk_to_url_str(user)
         return f'{NEXT_PUBLIC_URL}/password-reset/confirm?uid={id}&token={temp_key}'
     ```
-
-    ``` メールオプションに反映
+    
+    メールオプションに反映
+    ``` 
     class CustomPasswordResetSerializer(PasswordResetSerializer):
 
         def get_email_options(self, **kwargs):
