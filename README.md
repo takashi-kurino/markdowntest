@@ -180,13 +180,13 @@
 
     // Axiosインスタンス作成
     const api = axios.create({
-    baseURL: getBaseURL(),
-    withCredentials: true,
+        baseURL: getBaseURL(),
+        withCredentials: true,
     });
 
     export const refreshApi = axios.create({
-    baseURL: getBaseURL(),
-    withCredentials: true,
+        baseURL: getBaseURL(),
+        withCredentials: true,
     });
 
     api.interceptors.response.use(
@@ -230,10 +230,10 @@
     下記コードを追加して無限ループを止めるようにした。
 
     ```
-     // ログインページ,homeではリフレッシュ処理を行わない
-        if (window.location.pathname === "/login" || window.location.pathname === "/") {
+    // ログインページ,homeではリフレッシュ処理を行わない
+    if (window.location.pathname === "/login" || window.location.pathname === "/") {
         return Promise.reject(error);
-        }
+    }
     ```
 
 
