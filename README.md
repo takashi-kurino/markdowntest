@@ -57,8 +57,14 @@
     フロントのURLへ飛ばしたかったため、カスタムserializerを作成したが、uidが文字化けを起こす。 
 
     理想url：http://localhost/password-reset/confirm?uid=1&token={...} 
+    ```
+    uid = 1
+    ```
     結果url：http://localhost/password-reset/confirm?uid=A&token={...} 
-
+    ```
+    uid = A
+    ```
+    
     chatgptへ聞いたが解決せず、デフォルトコードを自分で見てみる
 
     ```
