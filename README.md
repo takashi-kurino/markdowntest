@@ -1,19 +1,19 @@
 # 認証付きTodoApp
 
-ステートフル認証付きtodoアプリ
+CookieベースJWT認証付きTodoApp
     [サイト](http://apple.com)
     
 ## 1. 技術スタック　選定理由
-- Frontend:React/Next.js/Tailwind 
+- Frontend : React / Next.js / Tailwind 
     - React：コンポーネント分割と状態管理により、TodoのCRUDやモーダル管理を整理しやすいため。 
     - Next：ルーティング・環境変数・ビルドを含めた実運用前提の構成を学ぶため。今回はApp Routerを利用 
     - Tailwind:UI設計よりもロジックと認証実装に集中するため。
 
-- Backed:Django  
+- Backed : Django  
     - 認証・管理画面やORMが揃っており、webアプリの基礎構造を学ぶのに適している。 
     - 将来的な拡張（非同期通信、API分離）も想定。
 
-- Auth: dj_rest_auth + JWT + HttpOnly Cookie
+- Auth : dj_rest_auth + JWT + HttpOnly Cookie
     - JWTを含めた認証の仕組みを歴史的背景（セッション / トークン）から理解したかった
     - フロントにトークンを持たせない設計を採用し、セキュリティ面も考慮
 
@@ -190,7 +190,7 @@
     ```
 
     - 結果url：http://localhost/password-reset/confirm?uid=1&token={...} 
-    - AIに聞いても解決できなかったことが、生のコードを見ることで解決した。 
+    - 公式実装を確認し、uid生成ロジックを特定したことで解決した。 
 
 ### リフレッシュトークンの扱い。
 
